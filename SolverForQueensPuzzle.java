@@ -60,28 +60,33 @@ public class SolverForQueensPuzzle {
 	nBoardsConsidered++;
 	
 	// action(s) for base case(s)
-	if (inProgress.lastIsNg()) return;
-	if (inProgress.accept()) {
-	    solutions.add(new BoardForQueensPuzzle(inProgress));
+	if (inProgress.lastIsNg()) {
+	    // System.out.println( "  for debugging: base case detected for..."
+	    // 			+ System.lineSeparator()
+	    // 			+ inProgress
+	    // 			);	    
 	    return;
 	}
 	
-	// System.out.println( "  for debugging: base case detected for..."
+	if (inProgress.accept()) {
+	    // System.out.println( "  for debugging: base case detected for..."
+	    // 			+ System.lineSeparator()
+	    // 			+ inProgress
+	    // 			);
+	    solutions.add(new BoardForQueensPuzzle(inProgress));
+	    return;
+	}      
+
+	// action for recursive cases
+	// System.out.println( "  for debugging: recursive case detected for..."
 	// 		    + System.lineSeparator()
 	// 		    + inProgress
 	// 		    );
-
-	// action for recursive cases
 	for (int file = 0; file < inProgress.ranks(); file++) {
 	    inProgress.populate(file);
 	    recordSolutionsStarted();
 	    inProgress.depopulate();
-	}
-	    
-	// System.out.println( "  for debugging: recursive case detected for..."
-	// 		    + System.lineSeparator()
-        //                     + inProgress
-	// 		    );
+	}	   
     }
 
 
